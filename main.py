@@ -6,32 +6,46 @@ import json
 CELLSIZE = 64
 
 class Cell:
-    def __init__(self, cellSize, posX, posY, xPadding, yPadding, idx, stageData) -> None:
+    def __init__(self, cellSize, posX, posY, xPadding, yPadding, idx: int, level: int) -> None:
         self.posX = posX
         self.posY = posY
         self.cellSize = cellSize
         self.idx = idx
+        self.level = level
 
-        self.stageData = stageData
+        if len(stages[f"L{level}"]) <= idx:
+            stages[f"L{level}"].append({"ts": ["sampleTexture.jpeg"], "cS": None, "mf": []})
+            jsonRewrite()
 
-        self.attachImg(self.stageData["ts"][0])
-        self.rect = pygame.Rect((posX * cellSize)+xPadding, (posY * cellSize)+yPadding, cellSize, cellSize)
+        self.textures = []
+        self.getTextures()
 
-    def attachImg(self, filename: str) -> None:
-        self.image = pygame.image.load(os.path.join("Textures", filename))
-        self.image = pygame.transform.scale(self.image, (64, 64))
+        self.baseRect = pygame.Rect((posX * cellSize)+xPadding, (posY * cellSize)+yPadding, cellSize, cellSize)
+        if stages[f"L{level}"][self.idx]["cS"] != None:
+            # switch statement or the sort that will set the proper collision rect for the object
+            pass
+        else:
+            self.collisonRect = None
+        
+    # Automatically formatted from furthest background to the foreground objects
+    def getTextures(self) -> None:
+        for filename in stages[f"L{self.level}"][self.idx]["ts"]:
+            texture = pygame.image.load(os.path.join("textures", filename))
+            pygame.transform.scale(texture, (CELLSIZE, CELLSIZE))
+            self.textures.append(texture)
 
     def hotReload(self):
-        self.attachImg(self.stageData["ts"][0])
+        self.getTextures()
 
     def draw(self, drawSurface: pygame.Surface) -> None:
-        drawSurface.blit(self.image, self.rect)
+        for texture in self.textures:
+            drawSurface.blit(texture, self.baseRect)
 
     def wireframeDraw(self, drawSurface: pygame.Surface) -> None:
         pygame.gfxdraw.rectangle(drawSurface, self.rect, (29, 173, 77))
 
 class Tilemap:
-    def __init__(self, width, height, cellSize, xPadding, yPadding, stage) -> None:
+    def __init__(self, width, height, cellSize, xPadding, yPadding) -> None:
         self.width = width
         self.height = height
 
@@ -39,8 +53,6 @@ class Tilemap:
         self.yPadding = yPadding
 
         self.cellSize = cellSize
-
-        self.stageData = stage
 
         self.cells: Cell = []
 
@@ -50,27 +62,11 @@ class Tilemap:
         idxIter = 0
         for row in range(0, self.width):
             for collumn in range(0, self.height):
-                passedCellData = {"idx": idxIter, "ts": ["sampleTexture.jpeg"], "cS": None, "mf": []}
-                idxPresent = False
-                for i in stage:
-                    if i["idx"] == idxIter:
-                        passedCellData = i
-                        idxPresent = True
-
-                if not idxPresent:
-                    stage.append(passedCellData)
-                    self.editedLevel = True
-
-                self.cells.append(Cell(cellSize, row, collumn, xPadding, yPadding, idxIter, passedCellData))
+                #{"idx": idxIter, "ts": ["sampleTexture.jpeg"], "cS": None, "mf": []}
                 idxIter += 1
 
     def hotReload(self, stageData):
-        self.stageData = stageData
-        iterator = 0
-        for i in self.cells:
-            i.stageData = self.stageData[iterator]
-            i.hotReload()
-            iterator += 1
+        pass
 
     def draw(self, screen):
         for i in self.cells:
@@ -81,20 +77,26 @@ class Tilemap:
             i.wireframeDraw(screen)
         pygame.gfxdraw.rectangle(screen, pygame.Rect(self.xPadding, self.yPadding, self.width * self.cellSize, self.height * self.cellSize), (255, 255, 255))
 
+with open("testLevels.json") as file:
+    stages = json.load(file)
+
+def jsonRewrite(filename: str = "testLevels.json"):
+    with open(filename, "w") as file:
+        json.dump(stages, file, indent=4)
+ 
 def main():
     pygame.init()
     screen = pygame.display.set_mode(((CELLSIZE*2) * 8, CELLSIZE * 14))
     clock = pygame.time.Clock()
     running = True
-
-    with open("levels.json") as file:
-        stages = json.load(file)
     
-    stageOne = Tilemap(6, int(screen.get_height() / CELLSIZE), CELLSIZE, 0, 0, stages["l1"])
+    """stageOne = Tilemap(6, int(screen.get_height() / CELLSIZE), CELLSIZE, 0, 0, stages["l1"])
     if stageOne.editedLevel == True:
         stages["l1"] = stageOne.stageData
         with open("levels.json", "w") as file:
-            json.dump(stages, file, indent = 4)
+            json.dump(stages, file, indent = 4)"""
+    
+    testCell = Cell(64, 0, 0, 0, 0, 1, 0)
 
     while running:
         for event in pygame.event.get():
@@ -104,16 +106,14 @@ def main():
                 if event.key == pygame.K_UP:
                     print("Up Key Pressed")
                 elif event.key == pygame.K_r:
-                    with open("levels.json") as file:
-                        stages = json.load(file)
-                    stageOne.hotReload(stages["l1"])
-                    print("R pressed")
+                    testCell.hotReload()
 
         screen.fill((145, 194, 158))
 
-        stageOne.draw(screen)
-        stageOne.wireframeDraw(screen)
-        #stageTwo.wireframeDraw(screen)
+        testCell.draw(screen)
+
+        #stageOne.draw(screen)
+        #stageOne.wireframeDraw(screen)
 
         pygame.display.flip()
         clock.tick(60)

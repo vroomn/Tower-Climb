@@ -6,7 +6,7 @@ import json
 CELLSIZE = 64
 
 class Cell:
-    def __init__(self, cellSize, posX, posY, xPadding, yPadding, idx: int, level: int) -> None:
+    def __init__(self, cellSize: int, posX: int, posY: int, xPadding: int, yPadding: int, idx: int, level: int) -> None:
         self.posX = posX
         self.posY = posY
         self.cellSize = cellSize
@@ -31,7 +31,7 @@ class Cell:
     def getTextures(self) -> None:
         for filename in stages[f"L{self.level}"][self.idx]["ts"]:
             texture = pygame.image.load(os.path.join("textures", filename))
-            pygame.transform.scale(texture, (CELLSIZE, CELLSIZE))
+            texture = pygame.transform.scale(texture, (CELLSIZE, CELLSIZE))
             self.textures.append(texture)
 
     def hotReload(self):
@@ -77,13 +77,17 @@ class Tilemap:
             i.wireframeDraw(screen)
         pygame.gfxdraw.rectangle(screen, pygame.Rect(self.xPadding, self.yPadding, self.width * self.cellSize, self.height * self.cellSize), (255, 255, 255))
 
-with open("testLevels.json") as file:
-    stages = json.load(file)
+def updateLocalJson(filename: str = "testLevels.json"):
+    global stages
+    with open("testLevels.json") as file:
+        stages = json.load(file)
 
 def jsonRewrite(filename: str = "testLevels.json"):
     with open(filename, "w") as file:
         json.dump(stages, file, indent=4)
  
+updateLocalJson()
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode(((CELLSIZE*2) * 8, CELLSIZE * 14))
@@ -96,7 +100,7 @@ def main():
         with open("levels.json", "w") as file:
             json.dump(stages, file, indent = 4)"""
     
-    testCell = Cell(64, 0, 0, 0, 0, 1, 0)
+    testCell = Cell(64, 0, 0, 0, 0, 0, 0)
 
     while running:
         for event in pygame.event.get():
@@ -106,6 +110,7 @@ def main():
                 if event.key == pygame.K_UP:
                     print("Up Key Pressed")
                 elif event.key == pygame.K_r:
+                    updateLocalJson()
                     testCell.hotReload()
 
         screen.fill((145, 194, 158))

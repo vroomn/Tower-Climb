@@ -5,10 +5,17 @@ import os
 class Cell:
     def __init__(self, filename: str, cellSize, posX, posY) -> None:
         self.image = pygame.image.load(os.path.join("textures", filename))
-        self.rect = pygame.Rect(posX, posY, cellSize, cellSize)
+        self.rect = pygame.Rect(posX, posY, cellSize*2, cellSize*2)
 
     def draw(self, drawSurface: pygame.Surface) -> None:
+        self.image = pygame.transform.scale(self.image, (32, 32))
         drawSurface.blit(self.image, self.rect)
+
+        self.image = pygame.transform.scale(self.image, (64, 64))
+        drawSurface.blit(self.image, pygame.Rect(32, 0, 64, 64))
+
+        self.image = pygame.transform.scale(self.image, (128, 128))
+        drawSurface.blit(self.image, pygame.Rect(64+32, 0, 128, 128))
 
 class Tilemap:
     def __init__(self, width, height, cellSize) -> None:

@@ -44,6 +44,8 @@ class Tilemap:
 
         self.cells: Cell = []
 
+        #TODO: Complete refactor to custom json loading system, this is a mess
+
         self.editedLevel = False
         idxIter = 0
         for row in range(0, self.width):

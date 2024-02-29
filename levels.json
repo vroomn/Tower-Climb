@@ -1,5 +1,676 @@
 {
     "l1": [
-        {"idx": 0, "ts": [{"l1": "sampleTexture"}], "cS": null, "mf": []}
+        {
+            "idx": 0,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 1,
+            "ts": [
+                "grey.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 2,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 3,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 4,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 5,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 6,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 7,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 8,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 9,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 10,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 11,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 12,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 13,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 14,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 15,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 16,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 17,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 18,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 19,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 20,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 21,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 22,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 23,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 24,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 25,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 26,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 27,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 28,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 29,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 30,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 31,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 32,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 33,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 34,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 35,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 36,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 37,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 38,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 39,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 40,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 41,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 42,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 43,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 44,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 45,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 46,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 47,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 48,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 49,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 50,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 51,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 52,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 53,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 54,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 55,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 56,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 57,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 58,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 59,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 60,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 61,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 62,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 63,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 64,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 65,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 66,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 67,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 68,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 69,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 70,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 71,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 72,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 73,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 74,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 75,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 76,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 77,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 78,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 79,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 80,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 81,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 82,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        },
+        {
+            "idx": 83,
+            "ts": [
+                "sampleTexture.jpeg"
+            ],
+            "cS": null,
+            "mf": []
+        }
     ]
 }

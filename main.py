@@ -2,41 +2,55 @@ import pygame
 import pygame.gfxdraw
 import os
 
+CELLSIZE = 64
+
 class Cell:
-    def __init__(self, filename: str, cellSize, posX, posY) -> None:
-        self.image = pygame.image.load(os.path.join("textures", filename))
-        self.rect = pygame.Rect(posX, posY, cellSize*2, cellSize*2)
+    def __init__(self, cellSize, posX, posY, xPadding, yPadding) -> None:
+        self.image = pygame.Surface((posX * cellSize, posY * cellSize))
+        self.rect = pygame.Rect((posX * cellSize)+xPadding, (posY * cellSize)+yPadding, cellSize, cellSize)
+
+        self.posX = posX
+        self.posY = posY
+        self.cellSize = cellSize
+
+    def attachImg(self, filename: str) -> None:
+        self.image = pygame.image.load(os.path.join("Textures", filename))
+        self.image = pygame.transform.scale(self.image, (64, 64))
 
     def draw(self, drawSurface: pygame.Surface) -> None:
-        self.image = pygame.transform.scale(self.image, (32, 32))
-        drawSurface.blit(self.image, self.rect)
+        drawSurface.blit(self.image, pygame.Rect(0, 0, 64, 64))
 
-        self.image = pygame.transform.scale(self.image, (64, 64))
-        drawSurface.blit(self.image, pygame.Rect(32, 0, 64, 64))
-
-        self.image = pygame.transform.scale(self.image, (128, 128))
-        drawSurface.blit(self.image, pygame.Rect(64+32, 0, 128, 128))
+    def wireframeDraw(self, drawSurface: pygame.Surface) -> None:
+        pygame.gfxdraw.rectangle(drawSurface, self.rect, (29, 173, 77))
 
 class Tilemap:
-    def __init__(self, width, height, cellSize) -> None:
+    def __init__(self, width, height, cellSize, xPadding, yPadding) -> None:
         self.width = width
         self.height = height
 
+        self.xPadding = xPadding
+        self.yPadding = yPadding
+
         self.cellSize = cellSize
 
-        self.testCell = Cell("sampleTexture.jpeg", cellSize, 0, 0)
+        self.cells: Cell = []
+        for row in range(0, self.width):
+            for collumn in range(0, self.height):
+                self.cells.append(Cell(cellSize, row, collumn, xPadding, yPadding))
 
     def wireframeDraw(self, screen: pygame.Surface) -> None:
-        self.testCell.draw(screen)
-        pygame.gfxdraw.rectangle(screen, pygame.Rect(0, 0, self.width * self.cellSize, self.height * self.cellSize), (255, 255, 255))
+        for i in self.cells:
+            i.wireframeDraw(screen)
+        pygame.gfxdraw.rectangle(screen, pygame.Rect(self.xPadding, self.yPadding, self.width * self.cellSize, self.height * self.cellSize), (255, 255, 255))
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((1280, 720))
+    screen = pygame.display.set_mode(((CELLSIZE*2) * 8, CELLSIZE * 14))
     clock = pygame.time.Clock()
     running = True
 
-    stageOne = Tilemap(6, 6, 16)
+    stageOne = Tilemap(6, int(screen.get_height() / CELLSIZE), CELLSIZE, 0, 0)
+    stageTwo = Tilemap(6, int(screen.get_height() / CELLSIZE), CELLSIZE, screen.get_width()-(CELLSIZE*6), 0)
 
     while running:
         for event in pygame.event.get():
@@ -49,6 +63,7 @@ def main():
         screen.fill((145, 194, 158))
 
         stageOne.wireframeDraw(screen)
+        stageTwo.wireframeDraw(screen)
 
         pygame.display.flip()
         clock.tick(60)

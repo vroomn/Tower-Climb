@@ -4,28 +4,31 @@ from jsonHandlers import *
 from cell import *
 
 class Tilemap:
-    def __init__(self, width, height, cellSize, xPadding, yPadding) -> None:
+    def __init__(self, width: int, height: int, level: int, xPadding: int = 0, yPadding :int = 0, cellSize: int = CELLSIZE) -> None:
         self.width = width
         self.height = height
-
         self.xPadding = xPadding
         self.yPadding = yPadding
 
         self.cellSize = cellSize
+        self.level = level
 
+        if len(jsonHandlers.stages) <= self.level:
+            jsonHandlers.stages[f"L{self.level}"] = []
+            jsonRewrite()
+
+        #TODO: Complete refactor to custom json file read/write system, json file is unreasonably long in terms of lines
         self.cells: Cell = []
-
-        #TODO: Complete refactor to custom json loading system, this is a mess
-
-        self.editedLevel = False
         idxIter = 0
         for row in range(0, self.width):
             for collumn in range(0, self.height):
-                #{"idx": idxIter, "ts": ["sampleTexture.jpeg"], "cS": None, "mf": []}
+                self.cells.append(Cell(row, collumn, self.xPadding, self.yPadding, idxIter, self.level))
                 idxIter += 1
 
-    def hotReload(self, stageData):
-        pass
+    def hotReload(self):
+        updateLocalJson()
+        for cell in self.cells:
+            cell.hotReload()
 
     def draw(self, screen):
         for i in self.cells:
@@ -35,17 +38,17 @@ class Tilemap:
         for i in self.cells:
             i.wireframeDraw(screen)
         pygame.gfxdraw.rectangle(screen, pygame.Rect(self.xPadding, self.yPadding, self.width * self.cellSize, self.height * self.cellSize), (255, 255, 255))
- 
+
 updateLocalJson()
 
 def main():
     pygame.init()
     screen = pygame.display.set_mode(((CELLSIZE*2) * 8, CELLSIZE * 14))
     clock = pygame.time.Clock()
-    running = True
-    
-    testCell = Cell(64, 0, 0, 0, 0, 0, 0)
 
+    levelOne = Tilemap(6, 14, 0)
+
+    running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -54,11 +57,11 @@ def main():
                 if event.key == pygame.K_UP:
                     print("Up Key Pressed")
                 elif event.key == pygame.K_r:
-                    pass
+                    levelOne.hotReload()
 
         screen.fill((145, 194, 158))
 
-        testCell.wireframeDraw(screen)
+        levelOne.draw(screen)
 
         pygame.display.flip()
         clock.tick(60)

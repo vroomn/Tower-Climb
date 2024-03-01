@@ -5,7 +5,7 @@ import jsonHandlers
 CELLSIZE = 64
 
 class Cell:
-    def __init__(self, cellSize: int, posX: int, posY: int, xPadding: int, yPadding: int, idx: int, level: int) -> None:
+    def __init__(self, posX: int, posY: int, xPadding: int, yPadding: int, idx: int, level: int, cellSize: int = CELLSIZE) -> None:
         self.posX = posX
         self.posY = posY
         self.cellSize = cellSize

@@ -41,4 +41,4 @@ class Cell:
             drawSurface.blit(texture, self.baseRect)
 
     def wireframeDraw(self, drawSurface: pygame.Surface) -> None:
-        pygame.gfxdraw.rectangle(drawSurface, self.rect, (29, 173, 77))
+        pygame.gfxdraw.rectangle(drawSurface, self.baseRect, (29, 173, 77))

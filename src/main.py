@@ -44,12 +44,6 @@ def main():
     clock = pygame.time.Clock()
     running = True
     
-    """stageOne = Tilemap(6, int(screen.get_height() / CELLSIZE), CELLSIZE, 0, 0, stages["l1"])
-    if stageOne.editedLevel == True:
-        stages["l1"] = stageOne.stageData
-        with open("levels.json", "w") as file:
-            json.dump(stages, file, indent = 4)"""
-    
     testCell = Cell(64, 0, 0, 0, 0, 0, 0)
 
     while running:
@@ -60,15 +54,11 @@ def main():
                 if event.key == pygame.K_UP:
                     print("Up Key Pressed")
                 elif event.key == pygame.K_r:
-                    updateLocalJson()
-                    testCell.hotReload()
+                    pass
 
         screen.fill((145, 194, 158))
 
-        testCell.draw(screen)
-
-        #stageOne.draw(screen)
-        #stageOne.wireframeDraw(screen)
+        testCell.wireframeDraw(screen)
 
         pygame.display.flip()
         clock.tick(60)

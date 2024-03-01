@@ -1,48 +1,7 @@
 import pygame
 import pygame.gfxdraw
-import os
-import json
-
-CELLSIZE = 64
-
-class Cell:
-    def __init__(self, cellSize: int, posX: int, posY: int, xPadding: int, yPadding: int, idx: int, level: int) -> None:
-        self.posX = posX
-        self.posY = posY
-        self.cellSize = cellSize
-        self.idx = idx
-        self.level = level
-
-        if len(stages[f"L{level}"]) <= idx:
-            stages[f"L{level}"].append({"ts": ["sampleTexture.jpeg"], "cS": None, "mf": []})
-            jsonRewrite()
-
-        self.textures = []
-        self.getTextures()
-
-        self.baseRect = pygame.Rect((posX * cellSize)+xPadding, (posY * cellSize)+yPadding, cellSize, cellSize)
-        if stages[f"L{level}"][self.idx]["cS"] != None:
-            # switch statement or the sort that will set the proper collision rect for the object
-            pass
-        else:
-            self.collisonRect = None
-        
-    # Automatically formatted from furthest background to the foreground objects
-    def getTextures(self) -> None:
-        for filename in stages[f"L{self.level}"][self.idx]["ts"]:
-            texture = pygame.image.load(os.path.join("textures", filename))
-            texture = pygame.transform.scale(texture, (CELLSIZE, CELLSIZE))
-            self.textures.append(texture)
-
-    def hotReload(self):
-        self.getTextures()
-
-    def draw(self, drawSurface: pygame.Surface) -> None:
-        for texture in self.textures:
-            drawSurface.blit(texture, self.baseRect)
-
-    def wireframeDraw(self, drawSurface: pygame.Surface) -> None:
-        pygame.gfxdraw.rectangle(drawSurface, self.rect, (29, 173, 77))
+from jsonHandlers import *
+from cell import *
 
 class Tilemap:
     def __init__(self, width, height, cellSize, xPadding, yPadding) -> None:
@@ -76,15 +35,6 @@ class Tilemap:
         for i in self.cells:
             i.wireframeDraw(screen)
         pygame.gfxdraw.rectangle(screen, pygame.Rect(self.xPadding, self.yPadding, self.width * self.cellSize, self.height * self.cellSize), (255, 255, 255))
-
-def updateLocalJson(filename: str = "testLevels.json"):
-    global stages
-    with open("testLevels.json") as file:
-        stages = json.load(file)
-
-def jsonRewrite(filename: str = "testLevels.json"):
-    with open(filename, "w") as file:
-        json.dump(stages, file, indent=4)
  
 updateLocalJson()
 

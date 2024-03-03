@@ -16,7 +16,7 @@ class Cell:
             jsonHandlers.stages[f"L{level}"].append({"ts": ["sampleTexture.jpeg"], "cS": None, "mf": []})
             jsonHandlers.jsonRewrite()
 
-        self.textures = []
+        self.textures: list[pygame.Surface] = []
         self.getTextures()
 
         self.baseRect = pygame.Rect((posX * cellSize)+xPadding, (posY * cellSize)+yPadding, cellSize, cellSize)

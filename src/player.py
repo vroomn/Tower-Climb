@@ -74,9 +74,9 @@ class Player:
                 if self.velocityX > 0: 
                     self.velocityX = 0
         
-        if self.rect.y+64 >= 721: # 720 is arbirary floor for skake of testing
+        if self.rect.y+64 >= 897: # 720 is arbirary floor for skake of testings
             self.velocityY = 0
-            self.rect = self.rect.move(0, (720 - (self.rect.y+64)))
+            self.rect = self.rect.move(0, (896 - (self.rect.y+64)))
 
         self.rect = self.rect.move(self.velocityX, self.velocityY)
 

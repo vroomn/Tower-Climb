@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 from jsonHandlers import *
 from tilemap import *
 from editor import Editor
+from player import *
 
 import pygame
 import pygame.gfxdraw
@@ -12,31 +12,19 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode(((CELLSIZE*2) * 8, CELLSIZE * 14))
     clock = pygame.time.Clock()
-
     levelOne = Tilemap(6, 14, 0)
 
     editor = Editor()
 
-=======
-import pygame
-from player import *
-
-def main():
-    pygame.init()
-    screen = pygame.display.set_mode((1280, 720))
-    clock = pygame.time.Clock()
-
-    playerOne = Player((100, screen.get_height()/2), "blankSprite.jpeg", InputTypes.LUR)
+    playerOne = Player((100, screen.get_height()/2), "blankSprite.jpeg", InputTypes.WAD)
 
     dt: float = 0
->>>>>>> origin/main
     running = True
     while running:
         for event in pygame.event.get():
             match event.type:
                 case pygame.QUIT:
                     running = False
-<<<<<<< HEAD
             
                 case pygame.MOUSEBUTTONDOWN:
                     if editor.editingMode:
@@ -64,24 +52,16 @@ def main():
 
         if not editor.editingMode:
             levelOne.draw(screen)
+
+            playerOne.movementUpdate(dt)
+
+            playerOne.draw(screen)
+
         else:
             editor.render(screen)
 
         pygame.display.flip()
-        clock.tick(60)
-=======
-                
-                
-        screen.fill((145, 194, 158))
-
-        playerOne.movementUpdate(dt)
-
-        playerOne.draw(screen)
-
-        pygame.display.flip()
         dt = clock.tick(60)/1000
->>>>>>> origin/main
-    
     pygame.quit()
 
 if __name__ == "__main__":

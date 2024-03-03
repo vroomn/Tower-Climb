@@ -13,7 +13,6 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode(((CELLSIZE*2) * 8, CELLSIZE * 14))
     clock = pygame.time.Clock()
-    levelOne = Tilemap(6, 14, 0)
 
     editor = Editor()
 
@@ -25,8 +24,6 @@ def main():
         Tilemap(6, 14, 0, 640), Tilemap(6, 14, 1, 640), Tilemap(6, 14, 2, 640)]
     leftLevel = 0
     rightLevel = 0
-    
-    collisionCheck((leftLevel, rightLevel))
 
     dt: float = 0
     running = True
@@ -74,6 +71,8 @@ def main():
 
             playerTwo.movementUpdate(dt)
             playerTwo.draw(screen)
+
+            collisionCheck((leftLevel, rightLevel))
 
         else:
             editor.render(screen)

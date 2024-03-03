@@ -7,6 +7,8 @@ class CollisionType(Enum):
 
 players = []
 def collisionCheck(activeStages):
-    # Credit to https://stackoverflow.com/questions/9542738/find-a-value-in-a-list (Niklas B.)
-    print()
-    jsonHandlers.stages
+    leftTowerRects = []
+    
+
+    rightTowerRects = []
+    pass

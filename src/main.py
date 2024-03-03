@@ -19,24 +19,26 @@ def main():
     running = True
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+            match event.type:
+                case pygame.QUIT:
+                    running = False
+            
+                case pygame.MOUSEBUTTONDOWN:
+                    if editor.editingMode:
+                        editor.clickCheck()
+                
+                case pygame.KEYDOWN:
+                    if editor.editingMode and event.key == pygame.K_r:
+                        editor.tilemap.hotReload()
+                    elif event.key == pygame.K_ESCAPE and editor.selectedTileIdx != None:
+                        editor.selectedTileIdx = None
+                        editor.selectedTextureIdx = None
 
-            if event.type == pygame.MOUSEBUTTONDOWN and editor.editingMode:
-                editor.clickCheck()
-
-            if event.type == pygame.KEYDOWN:
-                if editor.editingMode and event.key == pygame.K_r:
-                    editor.tilemap.hotReload()
-                elif event.key == pygame.K_ESCAPE and editor.selectedTileIdx != None:
-                    editor.selectedTileIdx = None
-                    editor.selectedTextureIdx = None
-
-                elif event.key == pygame.K_r:
-                    levelOne.hotReload()
-                elif event.key == pygame.K_e:
-                    screen = editor.toggle()
-                    levelOne.hotReload()
+                    elif event.key == pygame.K_r:
+                        levelOne.hotReload()
+                    elif event.key == pygame.K_e:
+                        screen = editor.toggle()
+                        levelOne.hotReload()
 
         screen.fill((145, 194, 158))
 

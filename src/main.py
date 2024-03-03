@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+from jsonHandlers import *
+from tilemap import *
+from editor import Editor
+
+import pygame
+import pygame.gfxdraw
+
+updateLocalJson()
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode(((CELLSIZE*2) * 8, CELLSIZE * 14))
+    clock = pygame.time.Clock()
+
+    levelOne = Tilemap(6, 14, 0)
+
+    editor = Editor()
+
+=======
 import pygame
 from player import *
 
@@ -9,18 +29,48 @@ def main():
     playerOne = Player((100, screen.get_height()/2), "blankSprite.jpeg", InputTypes.LUR)
 
     dt: float = 0
+>>>>>>> origin/main
     running = True
     while running:
         for event in pygame.event.get():
             match event.type:
                 case pygame.QUIT:
                     running = False
+<<<<<<< HEAD
+            
+                case pygame.MOUSEBUTTONDOWN:
+                    if editor.editingMode:
+                        editor.clickCheck()
                 
                 case pygame.KEYDOWN:
+                    if editor.editingMode and event.key == pygame.K_r:
+                        editor.tilemap.hotReload()
+                    elif event.key == pygame.K_ESCAPE and editor.selectedTileIdx != None:
+                        editor.selectedTileIdx = None
+                        editor.selectedTextureIdx = None
+
+                    elif event.key == pygame.K_r:
+                        levelOne.hotReload()
+                    elif event.key == pygame.K_e:
+                        screen = editor.toggle()
+                        levelOne.hotReload()
+                        
                     playerOne.control(event.key, InputTypes.KEYDOWN, dt)
 
                 case pygame.KEYUP:
                     playerOne.control(event.key, InputTypes.KEYUP, dt)
+
+        screen.fill((145, 194, 158))
+
+        if not editor.editingMode:
+            levelOne.draw(screen)
+        else:
+            editor.render(screen)
+
+        pygame.display.flip()
+        clock.tick(60)
+=======
+                
                 
         screen.fill((145, 194, 158))
 
@@ -30,6 +80,7 @@ def main():
 
         pygame.display.flip()
         dt = clock.tick(60)/1000
+>>>>>>> origin/main
     
     pygame.quit()
 

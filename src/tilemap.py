@@ -17,7 +17,7 @@ class Tilemap:
             jsonHandlers.jsonRewrite()
 
         #TODO: Complete refactor to custom json file read/write system, json file is unreasonably long in terms of lines
-        self.cells: Cell = []
+        self.cells: list[Cell] = []
         idxIter = 0
         for row in range(0, self.width):
             for collumn in range(0, self.height):

@@ -42,6 +42,10 @@ class Player:
                 case pygame.K_d:
                     self.velocityX = self.MOVEMENTSPEED * dt
 
+                case pygame.K_w:
+                    if self.velocityY < .5 and self.velocityY > -.5:
+                        self.velocityY -= 600 * dt
+
         else:
             print("LUR Input Schema")
 
@@ -63,7 +67,7 @@ class Player:
                 if self.velocityX > 0: 
                     self.velocityX = 0
         
-        if self.rect.y+64 >= 720: # 720 is arbirary floor for skake of testing
+        if self.rect.y+64 >= 721: # 720 is arbirary floor for skake of testing
             self.velocityY = 0
             self.rect = self.rect.move(0, (720 - (self.rect.y+64)))
 

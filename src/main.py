@@ -9,15 +9,33 @@ class Player:
         self.surface = pygame.image.load(path.join("Sprite_Imgs", texture))
 
         self.velocityX = 0
+        self.ambientFriction = 50
+
         self.velocityY = 0
         self.gravityAcc = 60
         self.gravityCap = 100
 
+    def control(self, ):
+        pass
+
     def movementUpdate(self, deltaTime: float):
         if self.velocityY < self.gravityCap:
             self.velocityY += int(self.gravityAcc * deltaTime)
+
+        if self.velocityX > 0:
+            self.velocityX -= 50*deltaTime
+
+            # If overcorrected reset
+            if self.velocityX < 0: 
+                self.velocityX = 0
+        elif self.velocityX < 0:
+            self.velocityX += 50*deltaTime
+
+            # If overcorrected reset
+            if self.velocityX > 0: 
+                self.velocityX = 0
         
-        if self.rect.y+64 >= 720:
+        if self.rect.y+64 >= 720: # 720 is arbirary floor for skake of testing
             self.velocityY = 0
             self.rect = self.rect.move(0, (720 - (self.rect.y+64)))
 
@@ -31,15 +49,19 @@ def main():
     screen = pygame.display.set_mode((1280, 720))
     clock = pygame.time.Clock()
 
-    playerOne = Player((10, 0), "blankSprite.jpeg")
+    playerOne = Player((100, screen.get_height()/2), "blankSprite.jpeg")
 
     dt: float = 0
     running = True
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
+            match event.type:
+                case pygame.QUIT:
+                    running = False
+                
+                case pygame.KEYDOWN:
+                    playerOne.control()
+                
         screen.fill((145, 194, 158))
 
         playerOne.movementUpdate(dt)

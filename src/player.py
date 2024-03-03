@@ -10,7 +10,7 @@ class InputTypes(Enum):
     LUR = 3 # Left, Up, Right
 
 class Player:
-    def __init__(self, initPos: tuple[int, int], texture: str, schema: InputTypes) -> None:
+    def __init__(self, initPos: tuple[int, int], xBounds: tuple[int, int], texture: str, schema: InputTypes) -> None:
         self.rect = pygame.Rect(initPos[0], initPos[1], 64, 64)
         self.surface = pygame.image.load(path.join("Sprite_Imgs", texture))
 
@@ -25,6 +25,7 @@ class Player:
         self.gravityCap = 100
 
         self.applyFriction = False
+        self.xBounds = xBounds
 
     def control(self, key, mode: InputTypes, dt):
         if mode == InputTypes.KEYUP:
@@ -79,6 +80,11 @@ class Player:
             self.rect = self.rect.move(0, (896 - (self.rect.y+64)))
 
         self.rect = self.rect.move(self.velocityX, self.velocityY)
+
+        if self.rect.x < self.xBounds[0]:
+            self.rect = self.rect.move(self.xBounds[0] - self.rect.x, 0)
+        elif self.rect.x+64 > self.xBounds[1]:
+            self.rect = self.rect.move((self.xBounds[1]-64) - self.rect.x, 0)
 
     def draw(self, drawSurface: pygame.Surface):
         drawSurface.blit(self.surface, self.rect)

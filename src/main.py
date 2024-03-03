@@ -16,7 +16,7 @@ def main():
 
     editor = Editor()
 
-    playerOne = Player((100, screen.get_height()/2), "blankSprite.jpeg", InputTypes.WAD)
+    playerOne = Player((100, screen.get_height()/2), (0, 6*CELLSIZE), "blankSprite.jpeg", InputTypes.WAD)
 
     dt: float = 0
     running = True

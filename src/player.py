@@ -46,7 +46,7 @@ class Player:
 
                 case pygame.K_w:
                     if self.velocityY < .5 and self.velocityY > -.5:
-                        self.velocityY -= 600 * dt
+                        self.velocityY -= 900 * dt
 
         elif self.schema == InputTypes.LUR:
             match key:

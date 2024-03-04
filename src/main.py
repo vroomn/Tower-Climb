@@ -19,9 +19,10 @@ def main():
     playerOne = Player((CELLSIZE*2+32, screen.get_height()/2), (0, 6*CELLSIZE), "blankSprite.jpeg", InputTypes.WAD)
     playerTwo = Player((800, screen.get_height()/2), (CELLSIZE*10, screen.get_width()), "blankSprite.jpeg", InputTypes.LUR)
 
+    # Levels are limited due to time issues and needing a large refactor of how levels interact and are generated
     levels = [
-        Tilemap(6, 14, 0), Tilemap(6, 14, 1), Tilemap(6, 14, 2),
-        Tilemap(6, 14, 0, 640), Tilemap(6, 14, 1, 640), Tilemap(6, 14, 2, 640)]
+        Tilemap(6, 14, 0),
+        Tilemap(6, 14, 0, 640)]
     leftLevel = 0
     rightLevel = 0
 
@@ -46,12 +47,12 @@ def main():
 
                     elif event.key == pygame.K_r:
                         levels[leftLevel].hotReload()
-                        levels[3+rightLevel].hotReload()
+                        levels[1+rightLevel].hotReload()
                         
                     elif event.key == pygame.K_e:
                         screen = editor.toggle()
                         levels[leftLevel].hotReload()
-                        levels[3+rightLevel].hotReload()
+                        levels[1+rightLevel].hotReload()
                         
                     playerOne.control(event.key, InputTypes.KEYDOWN, dt)
                     playerTwo.control(event.key, InputTypes.KEYDOWN, dt)
@@ -64,7 +65,7 @@ def main():
 
         if not editor.editingMode:
             levels[leftLevel].draw(screen)
-            levels[3+rightLevel].draw(screen)
+            levels[1+rightLevel].draw(screen)
 
             playerOne.movementUpdate(dt)
             playerOne.draw(screen)

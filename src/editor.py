@@ -30,6 +30,9 @@ class Editor:
         self.textureDeleteButton = Button(580, 64, f"Delete Texture {self.selectedTextureIdx}", self.deleteTexture, 0, width=140)
 
         self.addTexture = Button(740, 64, "New Texture", self.createTexture, 0)
+
+        #TODO: Make compatable with multiple levels
+        self.toggleCollider = Button(700, 36, "Toggle Collider: False", self.toggleColliderCallback, None, width=180)
     
     def render(self, drawSurface: pygame.Surface) -> None:
         for button in self.buttons:
@@ -42,6 +45,8 @@ class Editor:
         if self.selectedTileIdx != None:
             pygame.gfxdraw.rectangle(drawSurface, self.tilemap.cells[self.selectedTileIdx].baseRect, (255, 255, 255))
 
+            self.toggleCollider.draw(drawSurface)
+
             for i in range(0, len(self.tilemap.cells[self.selectedTileIdx].textures)):
                 drawSurface.blit(self.tilemap.cells[self.selectedTileIdx].textures[i], pygame.Rect((CELLSIZE*9) + (i*(CELLSIZE+10)), CELLSIZE*2, CELLSIZE, CELLSIZE))
             
@@ -52,6 +57,17 @@ class Editor:
                 self.drawPossibleTextures(drawSurface)
 
             self.addTexture.draw(drawSurface)
+
+    def toggleColliderCallback(self, *args):
+        if jsonHandlers.stages[f"L0"][self.selectedTileIdx]["cS"] == None:
+            jsonHandlers.stages[f"L0"][self.selectedTileIdx]["cS"] = True
+            self.toggleCollider.setText("Toggle Collider: True")
+        else:
+            jsonHandlers.stages[f"L0"][self.selectedTileIdx]["cS"] = None
+            self.toggleCollider.setText("Toggle Collider: False")
+        
+        jsonRewrite()
+
 
     def possibleTextureClickcheck(self, mousePos: tuple[int, int]):
         mouseX, mouseY = mousePos
@@ -118,6 +134,7 @@ class Editor:
         mouseX = mousePos[0]
         mouseY = mousePos[1]
         if self.selectedTileIdx != None:
+            self.toggleCollider.clickCheck(mousePos)
             self.textureDeleteButton.clickCheck(mousePos)
             self.addTexture.clickCheck(mousePos)
 

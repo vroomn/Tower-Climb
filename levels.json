@@ -86,9 +86,9 @@
         },
         {
             "ts": [
-                "sampleTexture.jpeg"
+                "grey.jpeg"
             ],
-            "cS": null,
+            "cS": true,
             "mf": []
         },
         {
@@ -583,9 +583,9 @@
         },
         {
             "ts": [
-                "sampleTexture.jpeg"
+                "grey.jpeg"
             ],
-            "cS": null,
+            "cS": true,
             "mf": []
         }
     ],

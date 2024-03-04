@@ -2,6 +2,7 @@ from jsonHandlers import *
 from tilemap import *
 from editor import Editor
 from player import *
+from collison import *
 
 import pygame
 import pygame.gfxdraw
@@ -12,11 +13,18 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode(((CELLSIZE*2) * 8, CELLSIZE * 14))
     clock = pygame.time.Clock()
-    levelOne = Tilemap(6, 14, 0)
 
     editor = Editor()
 
-    playerOne = Player((100, screen.get_height()/2), "blankSprite.jpeg", InputTypes.WAD)
+    playerOne = Player((CELLSIZE*2+32, screen.get_height()/2), (0, 6*CELLSIZE), "blankSprite.jpeg", InputTypes.WAD)
+    playerTwo = Player((800, screen.get_height()/2), (CELLSIZE*10, screen.get_width()), "blankSprite.jpeg", InputTypes.LUR)
+
+    # Levels are limited due to time issues and needing a large refactor of how levels interact and are generated
+    levels = [
+        Tilemap(6, 14, 0),
+        Tilemap(6, 14, 0, 640)]
+    leftLevel = 0
+    rightLevel = 0
 
     dt: float = 0
     running = True
@@ -38,24 +46,34 @@ def main():
                         editor.selectedTextureIdx = None
 
                     elif event.key == pygame.K_r:
-                        levelOne.hotReload()
+                        levels[leftLevel].hotReload()
+                        levels[1+rightLevel].hotReload()
+                        
                     elif event.key == pygame.K_e:
                         screen = editor.toggle()
-                        levelOne.hotReload()
+                        levels[leftLevel].hotReload()
+                        levels[1+rightLevel].hotReload()
                         
                     playerOne.control(event.key, InputTypes.KEYDOWN, dt)
+                    playerTwo.control(event.key, InputTypes.KEYDOWN, dt)
 
                 case pygame.KEYUP:
                     playerOne.control(event.key, InputTypes.KEYUP, dt)
+                    playerTwo.control(event.key, InputTypes.KEYUP, dt)
 
         screen.fill((145, 194, 158))
 
         if not editor.editingMode:
-            levelOne.draw(screen)
+            levels[leftLevel].draw(screen)
+            levels[1+rightLevel].draw(screen)
 
             playerOne.movementUpdate(dt)
-
             playerOne.draw(screen)
+
+            playerTwo.movementUpdate(dt)
+            playerTwo.draw(screen)
+
+            collisionCheck((leftLevel, rightLevel))
 
         else:
             editor.render(screen)
